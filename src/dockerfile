@@ -1,0 +1,18 @@
+FROM hayd/ubuntu-deno:latest
+
+EXPOSE 6000
+USER deno
+WORKDIR /app
+
+COPY deps.ts /app 
+RUN deno cache deps.ts
+
+ADD . /app
+RUN deno cache index.ts
+CMD ["run", "--allow-net", "index.ts"]
+
+
+
+
+
+
